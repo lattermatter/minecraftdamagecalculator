@@ -84,17 +84,19 @@ else:
     crit_Bool = 'without crits'
 
 # ARMOR POINTS
-dmg = dmg * (1 - (min(20, max(armor_points / 5, armor_points - (4 * dmg / (armor_toughness + 8)))) / 25))
+dmg_partial = dmg * (1 - (min(20, max(armor_points / 5, armor_points - (4 * dmg / (armor_toughness + 8)))) / 25))
 
 # FINAL VARIABLES
-dmg = round(dmg, 2)
-hits = math.ceil(hp / dmg)
-total_dmg = hits * dmg
+dmg_final = round(dmg_partial, 2)
+hits = math.ceil(hp / dmg_final)
+total_dmg_dealt = hits * dmg
+total_dmg_actual = hits* dmg_partial
 
 print(
     f'''To get a(n) {mob} ({hp} HP) with a(n) {weapon_material} {weapon_type} {crit_Bool},
 with {armor_points} defense points and {armor_toughness} toughness points, 
 it would take {hits} hits.
-Each hit would do {dmg} damage, amounting to {round(total_dmg, 2)} total damage.
-The total damage done would be {round(total_dmg - hp, 2)} more than the mob's HP ({hp}) It would take at least {total_dmg/dps} seconds to finish.
+Each hit would do {round(dmg_partial, 2)} damage, amounting to {round(total_dmg_actual, 2)} total damage.
+The weapon damage dealt would be {total_dmg_dealt}, the armor contributing to a {round(1-(total_dmg_actual/total_dmg_dealt), 2) * 100}% reduction.
+The total damage done would be {round(total_dmg_actual - hp, 2)} more than the mob's HP ({hp}). It would take at least {round(total_dmg_dealt/dps, 2)} seconds to finish.
 ''')
