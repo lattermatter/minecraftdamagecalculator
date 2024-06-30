@@ -127,21 +127,21 @@ def run(arg):
 
     # ARMOR POINTS
     dmg_partial = dmg * (1 - (min(20, max(armor_points / 5, armor_points - (4 * dmg / (armor_toughness + 8)))) / 25))
+    dmg_per_hit = dmg_partial * (1 - 4 * net_prot * 0.01)
     
     # FINAL VARIABLES
-    dmg_final = round(dmg_partial, 6)
-    hits = math.ceil(hp / dmg_final)
+    hits = math.ceil(hp / dmg_per_hit)
     total_dmg_dealt = hits * dmg
-    total_dmg_before_prot = hits* dmg_partial
+    total_dmg_actual = hits * dmg_per_hit
+    total_dmg_before_prot = hits * dmg_partial
 
-    # PROT
-    total_dmg_actual = total_dmg_before_prot * (1 - 4 * net_prot * 0.01)
+    
 
     print(
         f'''{mob}: {hp} | {letter_map_material[weapon[0]] if weapon_inp != "na" else "na"} {letter_map_weapon[weapon[1]] if weapon_inp != "na" else "na"} sharpness {weapon[2] if weapon_inp != "na" else "na"} {crit_Bool}
-    {round(hits, 6)} hits | {round(total_dmg_actual/hits, 6)} dmg per hit | {round(total_dmg_before_prot, 6)} dmg before prot | {round(total_dmg_actual, 6)} total damage
-    {round(total_dmg_dealt)} dmg dealt | armor {round(1-(total_dmg_actual/total_dmg_dealt), 6) * 100}% reduction | prot {4 * net_prot}% reduction
-    {round(round(total_dmg_before_prot, 6) - hp, 6)} extra dmg over HP | {round((round(total_dmg_actual/hits, 6) - round(round(total_dmg_before_prot, 6) - hp, 6)), 6)} min dmg final hit | {round(hits * dmg_nosharp_nocrit/dps, 6)} seconds to finish.
+    {round(hits, 6)} hits | {round(total_dmg_actual/hits, 6)} dmg per hit | {round(total_dmg_dealt)} dmg dealt | {round(total_dmg_before_prot, 6)} dmg before prot | {round(total_dmg_actual, 6)} total damage
+    armor {round(1-(total_dmg_before_prot/total_dmg_dealt), 6) * 100}% reduction | prot {4 * net_prot}% reduction
+    {round(total_dmg_actual - hp, 6)} extra dmg over HP | {round(hp - (total_dmg_actual- dmg_per_hit), 6)} min dmg final hit | {round(hits * dmg_nosharp_nocrit/dps, 6)} seconds to finish.
     ''')
     
 
