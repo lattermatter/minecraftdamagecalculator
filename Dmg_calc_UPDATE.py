@@ -141,7 +141,7 @@ def run(arg):
         f'''{mob}: {hp} | {letter_map_material[weapon[0]] if weapon_inp != "na" else "na"} {letter_map_weapon[weapon[1]] if weapon_inp != "na" else "na"} sharpness {weapon[2] if weapon_inp != "na" else "na"} {crit_Bool}
     {round(hits, 6)} hits | {round(total_dmg_actual/hits, 6)} dmg per hit | {round(total_dmg_before_prot, 6)} dmg before prot | {round(total_dmg_actual, 6)} total damage
     {round(total_dmg_dealt)} dmg dealt | armor {round(1-(total_dmg_actual/total_dmg_dealt), 6) * 100}% reduction | prot {4 * net_prot}% reduction
-    {round(total_dmg_actual - hp, 6)} extra dmg over HP | {round((round(total_dmg_actual/hits, 6) - round(total_dmg_actual - hp, 2)), 6)} min dmg final hit | {round(hits * dmg_nosharp_nocrit/dps, 6)} seconds to finish.
+    {round(round(total_dmg_before_prot, 6) - hp, 6)} extra dmg over HP | {round((round(total_dmg_actual/hits, 6) - round(round(total_dmg_before_prot, 6) - hp, 6)), 6)} min dmg final hit | {round(hits * dmg_nosharp_nocrit/dps, 6)} seconds to finish.
     ''')
     
 
