@@ -20,10 +20,10 @@ if True:
     mob_armorPoints = {'Zombie': 2, 'Zombified Piglin': 2, 'Zombie Villager': 2, 'Husk': 2, 'Drowned': 2,
                     'Small Magma Cube': 3,
                     'Wither': 4, 'Medium Magma Cube': 6, 'Killer Rabbit': 8, 'Large Magma Cube': 12, 'Shulker': 20}
-    armor_protection_list = [{"l": 1, "g": 2, "c": 2, "i": 2, "d": 3, "n": 3}, {"l": 3, "g": 5, "c": 5, "i": 6, "d": 8, "n": 8}, 
-                        {"l": 2, "g": 3, "c": 4, "i": 5, "d": 6, "n": 6}, {"l": 1, "g": 1, "c": 1, "i": 2, "d": 3, "n": 3}]
-    armor_toughness_list = [{"l": 0, "g": 0, "c": 0, "i": 0, "d": 2, "n": 3}, {"l": 0, "g": 0, "c": 0, "i": 0, "d": 2, "n": 3}, 
-                        {"l": 0, "g": 0, "c": 0, "i": 0, "d": 2, "n": 3}, {"l": 0, "g": 0, "c": 0, "i": 0, "d": 2, "n": 3}]
+    armor_protection_list = [{"l": 1, "g": 2, "c": 2, "i": 2, "d": 3, "n": 3, "o": 0}, {"l": 3, "g": 5, "c": 5, "i": 6, "d": 8, "n": 8, "o": 0}, 
+                        {"l": 2, "g": 3, "c": 4, "i": 5, "d": 6, "n": 6, "o": 0}, {"l": 1, "g": 1, "c": 1, "i": 2, "d": 3, "n": 3, "o": 0}]
+    armor_toughness_list = [{"l": 0, "g": 0, "c": 0, "i": 0, "d": 2, "n": 3, "o": 0}, {"l": 0, "g": 0, "c": 0, "i": 0, "d": 2, "n": 3, "o": 0}, 
+                        {"l": 0, "g": 0, "c": 0, "i": 0, "d": 2, "n": 3, "o": 0}, {"l": 0, "g": 0, "c": 0, "i": 0, "d": 2, "n": 3, "o": 0}]
     letter_map_weapon = {'s': "Sword", "a": "Axe", "h": "Shovel", "p": "Pickaxe"}
     letter_map_material = {"w": "Wooden", "g": "Golden", "s": "Stone", "i": "Iron", "d": "Diamond", "n": "Netherite"}
     weapon_dmg = {'Sword': {'Wooden': 4, 'Golden': 4, 'Stone': 5, 'Iron': 6, 'Diamond': 7, 'Netherite': 8},
@@ -82,7 +82,7 @@ def run(arg):
         if armor_info == "Q":
             armor_info = input("""Input a separated list for the armor. 
     Write in order: helmet, chestplate, leggings, boots.
-    Leather -> l, Gold -> g, Chainmail -> c, Iron -> i, Diamond -> d, Netherite -> n
+    Leather -> l, Gold -> g, Chainmail -> c, Iron -> i, Diamond -> d, Netherite -> n, Nothing -> o
     Example: i1 i0 d2 n4 
     means prot 1 iron helmet, no prot iron chestplate, prot 2 diamond leggins, prot 4 netherite boots 
     type na for no armor
